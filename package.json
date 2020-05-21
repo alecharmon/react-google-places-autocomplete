@@ -1,6 +1,6 @@
 {
   "name": "react-google-places-autocomplete",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Google places autocomplete input for ReactJS.",
   "main": "dist/react-google-places-autocomplete.cjs.js",
   "module": "dist/react-google-places-autocomplete.esm.js",
@@ -54,6 +54,8 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.10.1",
+    "@material-ui/lab": "^4.0.0-alpha.55",
     "prop-types": "^15.6.2",
     "react": "^16.13.1"
   }

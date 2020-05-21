@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import injectScript from '../helpers/injectScript';
 import autocompletionRequestBuilder from '../helpers/autocompletionRequestBuilder';
 import debounce from '../helpers/debounce';
+
 import {
   autocompletionRequestType,
   suggestionClassNamesType,
@@ -291,26 +294,22 @@ class GooglePlacesAutocomplete extends React.Component {
     }
 
     return (
-      <div
+      <Autocomplete
         id={`${idPrefix}-google-places-suggestions-container`}
-        className={suggestionsClassNames.container || 'google-places-autocomplete__suggestions-container'}
+        freeSolo
+        options={suggestions.map((option) => option.description)}
+        className={suggestionsClassNames.container}
         style={suggestionsStyles.container}
-      >
-        {
-          suggestions.map((suggestion, index) => (
-            <div
-              id={`${idPrefix}-google-places-autocomplete-suggestion--${index}`}
-              key={suggestion.id}
-              className={`${suggestionsClassNames.suggestion || 'google-places-autocomplete__suggestion'} ${activeSuggestion === index ? suggestionsClassNames.suggestionActive || 'google-places-autocomplete__suggestion--active' : ''}`}
-              style={suggestionsStyles.suggestion}
-              onClick={(event) => this.onSuggestionSelect(suggestion, event)}
-              role="presentation"
-            >
-              {suggestion.description}
-            </div>
-          ))
-        }
-      </div>
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="option"
+            margin="normal"
+            onClick={(event) => this.onSuggestionSelect(params, event)}
+            variant="outlined"
+          />
+        )}
+      />
     );
   }
 
